@@ -1,5 +1,8 @@
 import json
 
+category = ["Food", "Salary", "Gift", "Miscellaneous", "Transport", "Delivery", "Travel", "Cafe"]
+
+
 def load():
     all_data = []
     try:

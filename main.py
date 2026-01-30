@@ -14,9 +14,9 @@ while choice != 6:
     if choice == 1:
         add_oper()
     elif choice == 2:
-        pass
+        show_balance()
     elif choice == 3:
-        pass
+        show_history()
     elif choice == 4:
         pass
     elif choice == 5:
