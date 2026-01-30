@@ -18,7 +18,7 @@ while choice != 6:
     elif choice == 3:
         show_history()
     elif choice == 4:
-        pass
+        show_stat()
     elif choice == 5:
         save_oper()
     elif choice == 6:

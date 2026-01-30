@@ -1,61 +1,13 @@
-from datetime import datetime
-from storage import *
+from obj_constructor import constructor
+from storage import load, save
+from stats import *
 
 
-data = {
-    "id": 0,
-    "type": "",
-    "amount": 0,
-    "category": "",
-    "comments": "",
-    "date": ""
-}
+def add_oper(): #Function receive data from user and create income or expense object
+    global data
+    data = constructor()
 
-def add_oper():
-#Type Selection
-    while True:
-        cho_oper = input("Income or Expense? ")
-        try:
-            if cho_oper.lower() == "income" or cho_oper.lower() == "expense":
-                data["type"] = cho_oper
-                break
-            else:
-                raise ValueError
-        except ValueError:
-            print("Error! Enter: Income or Expense!")
-
-    #Entering amount money
-    try:
-        cho_oper = int(input("Enter amount money: "))
-        data["amount"] = cho_oper
-    except ValueError:
-        print("Error! Enter number!")
-
-    #Choosing category
-    print("Select category: ")
-    for i in range(len(category)):
-        print(f"{i} - {category[i]}")
-    while True:
-        try:
-            cho_oper = int(input("Enter number: "))
-            if cho_oper not in range(len(category)):
-                raise ValueError
-            data["category"] = category[cho_oper]
-            break
-        except ValueError:
-            print(f"Error! Enter number below 0 - {len(category) - 1}!")
-
-    #Writing comments
-    cho_oper = input("Enter comments: ")
-    data["comments"] = cho_oper
-
-    data["date"] = datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M')
-    print(f'Date - {data["date"]}')
-
-    print(data)
-
-
-def show_balance():
+def show_balance(): #Sum up income, expense and calculating balance
     all_data = load()
     income = 0
     expense = 0
@@ -69,17 +21,29 @@ def show_balance():
           f"\nBalance: {income - expense}\n")
 
 
-def show_history():
+def show_history(): #Showes tha latest 5 added object
     all_data = load()
     story = []
     story = all_data[-5:]
     for i in story: print(i, "\n")
 
 
-def show_stat():
-    pass
-def save_oper():
-    all_data = load()
-    data["id"] = len(all_data)
-    all_data.append(data)
-    save(all_data)
+def show_stat(): #Showes stats
+    while True:
+        tm = int(input("Statistics:\n"
+              "1 - Income\n"
+              "2 - Expense\nEnter: "))
+        if tm == 1:
+            income_stats()
+            break
+        elif tm == 2:
+            expense_stat()
+            break
+        else:
+            print("Wrong input. Enter 1 or 2!")
+
+def save_oper(): #Function for saving list in JSON file
+    all_data = load() #Load JSON file
+    data["id"] = len(all_data) #Added an ID to the entry
+    all_data.append(data) #Added object to list with all data
+    save(all_data) #Saving in JSON file
