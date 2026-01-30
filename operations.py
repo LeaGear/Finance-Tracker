@@ -22,12 +22,22 @@ except FileNotFoundError:
 def add_oper():
     while True:
         cho_oper = input("Income or Expense? ")
-        if cho_oper.lower() == "income":
+        try:
+            #print(cho_oper)
+            if cho_oper.lower() == "income" or cho_oper.lower() == "expense":
+                data["type"] = cho_oper
+                break
+            else:
+                raise ValueError
+        except ValueError:
+            print("Error! Enter: Income or Expense!")
+        '''if cho_oper.lower() == "income":
             data["type"] = cho_oper
             break
         elif cho_oper.lower() == "expense":
             data["type"] = cho_oper
-            break
+            break'''
+    #print(data["type"])
     cho_oper = int(input("Enter amount money: "))
     data["amount"] = cho_oper
     cho_oper = input("Enter category: ")

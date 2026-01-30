@@ -1,8 +1,8 @@
 from operations import *
 
-choose = 10
+choice = 10
 
-while choose != 6:
+while choice != 6:
     print("Main Menu:\n"
           "1 - Add operation\n"
           "2 - Show balance\n"
@@ -10,17 +10,17 @@ while choose != 6:
           "4 - Show statistics\n"
           "5 - Save operation\n"
           "6 - Exit")
-    choose = int(input("What do you want: "))
-    if choose == 1:
+    choice = int(input("What do you want: "))
+    if choice == 1:
         add_oper()
-    elif choose == 2:
+    elif choice == 2:
         pass
-    elif choose == 3:
+    elif choice == 3:
         pass
-    elif choose == 4:
+    elif choice == 4:
         pass
-    elif choose == 5:
+    elif choice == 5:
         save_oper()
-    elif choose == 6:
+    elif choice == 6:
         print("Exiting...")
         break
