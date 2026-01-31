@@ -7,11 +7,10 @@ def create_bible():
     #print(bibl)
     return bibl
 
-def degree_lists(trigger):
-    data = load()
+def degree_lists(data_list, trigger):
     income = []
     expense = []
-    for i in data:
+    for i in data_list:
         if i["type"] == "income":
             income.append(i)
         else:
@@ -26,16 +25,16 @@ def output(bibl):
     for i in bibl:
         print(f"{i} = {bibl[i]} UAH")
 
-def income_stats():
+def income_stats(data_list):
     bibl = create_bible()
-    all_income = degree_lists("income")
+    all_income = degree_lists(data_list, "income")
     for i in all_income:
         bibl[i["category"]] += i["amount"]
     output(bibl)
 
-def expense_stat():
+def expense_stat(data_list):
     bibl = create_bible()
-    all_expense = degree_lists("expense")
+    all_expense = degree_lists(data_list, "expense")
     for i in all_expense:
         bibl[i["category"]] += i["amount"]
     output(bibl)
