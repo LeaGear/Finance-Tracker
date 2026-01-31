@@ -39,10 +39,14 @@ def main():
                                                               "Error! Enter number!")
                 if 0 < temp_mon_filter <= 12:
                     complete_filter = filters.month_filter(data_list, temp_mon_filter)
-                    print(complete_filter)
                     break
                 else:
                     print("Enter number below 1 and 12")
+            if not complete_filter:
+                print("No data for this month!")
+            else:
+                for i in complete_filter:
+                    print(f"Date: {i['date']}\n{i['type']}: {i['amount']}\nCategory: {i['category']}")
 
         elif choice == 6:
             print("Exiting...")
