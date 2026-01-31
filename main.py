@@ -1,5 +1,6 @@
 import operations
-from storage import load
+from storage import load, save
+
 
 
 def main():
@@ -10,12 +11,10 @@ def main():
               "2 - Show balance\n"
               "3 - Show history\n"
               "4 - Show statistics\n"
-              "5 - Save operation\n"
-              "6 - Exit")
+              "5 - Exit")
         choice = int(input("What do you want: "))
-
         if choice == 1:
-            operations.add_oper()
+            data_list = operations.add_oper(data_list)
         elif choice == 2:
             temp_balance = operations.show_balance(data_list)
             print(f"\nIncome: {temp_balance["income"]}"
@@ -24,11 +23,12 @@ def main():
         elif choice == 3:
             operations.show_history(data_list)
         elif choice == 4:
-            operations.show_stat(data_list)
+            stat_dict = operations.show_stat(data_list)
+            for i in stat_dict:
+                print(f"{i} = {stat_dict[i]} UAH")
         elif choice == 5:
-            operations.save_oper(data_list)
-        elif choice == 6:
             print("Exiting...")
+            save(data_list)
             break
 
 main()

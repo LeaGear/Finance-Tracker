@@ -1,16 +1,17 @@
 from datetime import datetime
 from storage import category
 
-data = {
-    "id": 0,
-    "type": "",
-    "amount": 0,
-    "category": "",
-    "comments": "",
-    "date": ""
-}
+
 
 def constructor():
+    data = {
+        "id": 0,
+        "type": "",
+        "amount": 0,
+        "category": "",
+        "comments": "",
+        "date": ""
+    }
     # Type Selection
     while True:
         cho_oper = input("Income or Expense? ")
