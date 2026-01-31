@@ -25,16 +25,22 @@ def constructor():
             print("Error! Enter: Income or Expense!")
 
     # Entering amount money
-    cho_oper = optimization.get_verified_int("Enter amount money: ", "Error! Enter number!")
+    cho_oper = optimization.get_verified_int("Enter amount money: ",
+                                             "Error! Enter number!")
     data["amount"] = cho_oper
 
     # Choosing category
     print("Select category: ")
-    for i in range(len(category)):
-        print(f"{i} - {category[i]}")
-    cho_oper = optimization.get_verified_int("Enter number: ",
-                                             f"Error! Enter number below 0 - {len(category) - 1}!")
-    data["category"] = category[cho_oper]
+    while True:
+        for i in range(len(category)):
+            print(f"{i} - {category[i]}")
+        cho_oper = optimization.get_verified_int("Enter number: ",
+                                                 f"Error! Enter number below 0 - {len(category) - 1}!")
+        if 0 < cho_oper < len(category):
+            data["category"] = category[cho_oper]
+            break
+        else:
+            print(f"Error! Enter number below 0 - {len(category) - 1}!")
 
     # Writing comments
     cho_oper = input("Enter comments: ")

@@ -1,6 +1,9 @@
 from obj_constructor import constructor
-import stats
 from uuid import uuid4
+
+import optimization
+import stats
+
 
 def add_oper(data_list): #Function receive data from user and create income or expense object
     data = constructor()
@@ -26,9 +29,10 @@ def show_history(data_list): #Showes tha latest 5 added object
 
 def show_stat(data_list): #Showes stats
     while True:
-        tm = int(input("Statistics:\n"
-              "1 - Income\n"
-              "2 - Expense\nEnter: "))
+        tm = optimization.get_verified_int("Statistics:\n"
+                                           "1 - Income\n"
+                                           "2 - Expense\nEnter: ",
+                                           "Error! Enter number!")
         if tm == 1:
             temp_stat = stats.type_stats(data_list, "income")
             break

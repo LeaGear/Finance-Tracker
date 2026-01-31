@@ -1,7 +1,8 @@
 import operations
-from storage import load, save
 import optimization
+import filters
 
+from storage import load, save
 
 def main():
     data_list = load()
@@ -13,7 +14,8 @@ def main():
               "2 - Show balance\n"
               "3 - Show history\n"
               "4 - Show statistics\n"
-              "5 - Exit")
+              "5 - Filter by month\n"
+              "6 - Exit")
         choice  = optimization.get_verified_int("What do you want: ", error)
 
         if choice == 1:
@@ -32,6 +34,17 @@ def main():
             for i in stat_dict:
                 print(f"{i} = {stat_dict[i]} UAH")
         elif choice == 5:
+            while True:
+                temp_mon_filter = optimization.get_verified_int("Enter number of month: ",
+                                                              "Error! Enter number!")
+                if 0 < temp_mon_filter <= 12:
+                    complete_filter = filters.month_filter(data_list, temp_mon_filter)
+                    print(complete_filter)
+                    break
+                else:
+                    print("Enter number below 1 and 12")
+
+        elif choice == 6:
             print("Exiting...")
             save(data_list)
             break
