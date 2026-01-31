@@ -1,9 +1,10 @@
 from obj_constructor import constructor
 import stats
+from uuid import uuid4
 
 def add_oper(data_list): #Function receive data from user and create income or expense object
     data = constructor()
-    data["id"] = len(data_list) #Added an ID to the entry
+    data["id"] = str(uuid4())#Added an ID to the entry
     data_list.append(data)
     return data_list
 
@@ -20,7 +21,7 @@ def show_balance(data_list): #Sum up income, expense and calculating balance
 
 def show_history(data_list): #Showes tha latest 5 added object
     story = data_list[-5:]
-    for i in story: print(i, "\n")
+    return story
 
 
 def show_stat(data_list): #Showes stats
@@ -29,10 +30,10 @@ def show_stat(data_list): #Showes stats
               "1 - Income\n"
               "2 - Expense\nEnter: "))
         if tm == 1:
-            temp_stat = stats.income_stats(data_list)
+            temp_stat = stats.type_stats(data_list, "income")
             break
         elif tm == 2:
-            temp_stat = stats.expense_stat(data_list)
+            temp_stat = stats.type_stats(data_list, "expense")
             break
         else:
             print("Wrong input. Enter 1 or 2!")

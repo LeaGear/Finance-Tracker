@@ -28,7 +28,9 @@ def main():
                   f"\nExpense: {temp_balance['expense']}"
                   f"\nBalance: {temp_balance['balance']}\n")
         elif choice == 3:
-            operations.show_history(data_list)
+            print("Your last 5 entries:\n")
+            temp_history = operations.show_history(data_list)
+            for i in temp_history: print(i)
         elif choice == 4:
             stat_dict = operations.show_stat(data_list)
             for i in stat_dict:
