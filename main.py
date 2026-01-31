@@ -12,14 +12,21 @@ def main():
               "3 - Show history\n"
               "4 - Show statistics\n"
               "5 - Exit")
-        choice = int(input("What do you want: "))
+
+        while True:
+            try:
+                choice = int(input("What do you want: "))
+                break
+            except ValueError:
+                print("Enter number below 1 and 5")
+
         if choice == 1:
             data_list = operations.add_oper(data_list)
         elif choice == 2:
             temp_balance = operations.show_balance(data_list)
-            print(f"\nIncome: {temp_balance["income"]}"
+            print(f"\nIncome: {temp_balance['income']}"
                   f"\nExpense: {temp_balance['expense']}"
-                  f"\nBalance: {temp_balance["balance"]}\n")
+                  f"\nBalance: {temp_balance['balance']}\n")
         elif choice == 3:
             operations.show_history(data_list)
         elif choice == 4:
@@ -30,5 +37,7 @@ def main():
             print("Exiting...")
             save(data_list)
             break
+        else:
+            print("Enter number below 1 and 5")
 
 main()
