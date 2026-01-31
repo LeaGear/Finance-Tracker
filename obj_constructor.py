@@ -1,6 +1,6 @@
 from datetime import datetime
 from storage import category
-
+import optimization
 
 
 def constructor():
@@ -25,30 +25,22 @@ def constructor():
             print("Error! Enter: Income or Expense!")
 
     # Entering amount money
-    try:
-        cho_oper = int(input("Enter amount money: "))
-        data["amount"] = cho_oper
-    except ValueError:
-        print("Error! Enter number!")
+    cho_oper = optimization.get_verified_int("Enter amount money: ", "Error! Enter number!")
+    data["amount"] = cho_oper
 
     # Choosing category
     print("Select category: ")
     for i in range(len(category)):
         print(f"{i} - {category[i]}")
-    while True:
-        try:
-            cho_oper = int(input("Enter number: "))
-            if cho_oper not in range(len(category)):
-                raise ValueError
-            data["category"] = category[cho_oper]
-            break
-        except ValueError:
-            print(f"Error! Enter number below 0 - {len(category) - 1}!")
+    cho_oper = optimization.get_verified_int("Enter number: ",
+                                             f"Error! Enter number below 0 - {len(category) - 1}!")
+    data["category"] = category[cho_oper]
 
     # Writing comments
     cho_oper = input("Enter comments: ")
     data["comments"] = cho_oper
 
+    #Adding date
     data["date"] = datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M')
     print(f'Date - {data["date"]}')
 

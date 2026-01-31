@@ -1,10 +1,12 @@
 import operations
 from storage import load, save
-
+import optimization
 
 
 def main():
     data_list = load()
+    error = "Enter number below 1 and 5"
+
     while True:
         print("Main Menu:\n"
               "1 - Add operation\n"
@@ -12,13 +14,7 @@ def main():
               "3 - Show history\n"
               "4 - Show statistics\n"
               "5 - Exit")
-
-        while True:
-            try:
-                choice = int(input("What do you want: "))
-                break
-            except ValueError:
-                print("Enter number below 1 and 5")
+        choice  = optimization.get_verified_int("What do you want: ", error)
 
         if choice == 1:
             data_list = operations.add_oper(data_list)
